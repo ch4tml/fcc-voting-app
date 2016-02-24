@@ -46,7 +46,9 @@ exports.postLogin = function(req, res, next) {
         return next(err);
       }
       req.flash('success', { msg: 'Success! You are logged in.' });
-      res.redirect(req.session.returnTo || '/');
+      req.session.returnTo = req.path;
+      res.redirect(req.session.returnTo || '/'); // Original
+      delete req.session.returnTo;
     });
   })(req, res, next);
 };
