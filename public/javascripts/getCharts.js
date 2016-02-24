@@ -1,14 +1,17 @@
 (function(){
-    var app = angular.module("allCharts", {});
+    var app = angular.module("allCharts", []);
     app.controller("ChartController", ["$scope", "$http", ($scope, $http) => {
         $scope.charts = [];
         $http({
             method: "GET",
-            url: "/api/getAll"
+            url: "/api/all"
         }).then(function (response) {
-            response.forEach((item) => {
-                let temp = {};
-                temp.polls.poll.title;
+            console.log(response);
+            console.log(typeof(response));
+
+            response.data.forEach((item) => {
+                var temp = {};
+                temp.title = item.polls.poll.title;
                 $scope.charts.push(temp);
             });
         }, function (err) {

@@ -49,6 +49,8 @@ exports.getAll = (req, res) => {
 
 
 exports.getRecent = (req, res) => {
+    if(req.session.passport.user === undefined)
+      res.send(JSON.stringify(data));
     // Returns most recent poll created by logged in user
     Poll.find({"polls.poll.username": req.session.passport.user}).sort("-polls.poll.created").exec(function(err, docs){
         if(err) throw err;

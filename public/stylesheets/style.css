@@ -117,6 +117,15 @@ a:hover {
   padding: 50px;
 }
 
+/* All Polls */
+
+.current-polls{
+  margin: 20px;
+  height: 60px;
+  width: 60vw;
+  background-color: #777;
+}
+
 
 /* Create page styling*/
 
