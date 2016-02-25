@@ -1,28 +1,20 @@
 $(document).ready(function(){
     "use strict";
     var ctx = $("#myChart").get(0).getContext("2d");
-    var myDoughnutChart;
+    var myBarChart;
     var opts = {
-            //Boolean - Whether we should show a stroke on each segment
-            segmentShowStroke : true,
-            //String - The colour of each segment stroke
-            segmentStrokeColor : "#fff",
-            //Number - The width of each segment stroke
-            segmentStrokeWidth : 2,
-            //Number - The percentage of the chart that we cut out of the middle
-            percentageInnerCutout : 50, // This is 0 for Pie charts
-            //Number - Amount of animation steps
-            animationSteps : 100,
-            //String - Animation easing effect
-            animationEasing : "easeOutBounce",
-            //Boolean - Whether we animate the rotation of the Doughnut
-            animateRotate : true,
-            //Boolean - Whether we animate scaling the Doughnut from the centre
-            animateScale : false,
-            //String - A legend template
-            legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
-        
-        };
+                scaleBeginAtZero : true,
+                scaleShowGridLines : true,
+                scaleGridLineColor : "rgba(0,0,0,.05)",
+                scaleGridLineWidth : 1,
+                scaleShowHorizontalLines: true,
+                scaleShowVerticalLines: true,
+                barShowStroke : true,
+                barStrokeWidth : 2,
+                barValueSpacing : 5,
+                barDatasetSpacing : 1,
+                legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+            };
     function getData(){
         return $.ajax({
             url: "/api/recent",
@@ -32,6 +24,10 @@ $(document).ready(function(){
     
     getData().done(function(data) {
         data = JSON.parse(data);
-        myDoughnutChart = new Chart(ctx).Doughnut(data, opts)
+        var data = {
+            labels          : data.labels,
+            datasets        : data.dataset
+        };
+        myBarChart = new Chart(ctx).Bar(data, opts)
     });
 });

@@ -35,29 +35,11 @@ exports.submit = (req, res) => {
             username        : req.session.passport.user,
             created         : Date.now(),
             title           : req.body.title,
+            labels          : [req.body.option1, req.body.option2, req.body.option3, req.body.option4],
             dataset         : [{
-                value       : 1,
-                color       : randomColour(),
-                highlight   : randomColour(),
-                label       : req.body.option1
-            },
-            {
-                value       : 2,
-                color       : randomColour(),
-                highlight   : randomColour(),
-                label       : req.body.option2
-            },
-            {
-                value       : 3,
-                color       : randomColour(),
-                highlight   : randomColour(),
-                label       : req.body.option3
-            },
-            {
-                value       : 4,
-                color       : randomColour(),
-                highlight   : randomColour(),
-                label       : req.body.option4
+                fillColor   : randomColour(),
+                strokeColor : "rgba(220,220,220,0.8)",
+                data        : [1, 4, 2, 5]
             }]
         };
     

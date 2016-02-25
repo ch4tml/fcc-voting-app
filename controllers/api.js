@@ -54,11 +54,11 @@ exports.getRecent = (req, res) => {
     // Returns most recent poll created by logged in user
     Poll.find({"polls.poll.username": req.session.passport.user}).sort("-polls.poll.created").exec(function(err, docs){
         if(err) throw err;
-        if(docs === null || docs.length === 0)
+        if(docs === undefined || docs === null || docs.length === 0)
             res.end(JSON.stringify(data));
         else if(docs.length > 0){
             console.log("Returning data from database...");
-            res.end(JSON.stringify(docs[0].polls.poll.dataset));
+            res.end(JSON.stringify(docs[0].polls.poll));
         }
         res.end();
     });
@@ -78,7 +78,7 @@ exports.randomChart = (req, res) => {
           if(result === null)
             res.end(JSON.stringify(data));
           else
-            res.end(JSON.stringify(result.polls.poll.dataset));
+            res.end(JSON.stringify(result.polls.poll));
         });
     });
 };

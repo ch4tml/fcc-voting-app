@@ -1,6 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Quattrocento+Sans);
+
 /* RAW HTML ELEMENTS */
 html{
   background-color: #339999;
+  font-family: 'Quattrocento Sans', sans-serif;
   /*height: 100%;
   background-color: #339999;
   /*overflow: hidden;*/
@@ -10,7 +13,7 @@ body {
   display: inline;
   /*height: 100vh;*/
   background-color: #339999;
-  font-family: "Merriweather", serif;
+  font-family: 'Quattrocento Sans', sans-serif;
   text-align: center;
 }
 
