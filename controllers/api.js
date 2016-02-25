@@ -38,10 +38,10 @@ exports.getAll = (req, res) => {
   Poll.find({}, (err, docs) => {
     if(err) throw err;
     if(docs === null || docs.length === 0)
-      res.send(JSON.stringify(data));
+      res.end(JSON.stringify(data));
     else if(docs.length > 0){
         console.log("Returning data from database...");
-        res.send(JSON.stringify(docs));
+        res.end(JSON.stringify(docs));
     }
   });
 };
@@ -55,10 +55,10 @@ exports.getRecent = (req, res) => {
     Poll.find({"polls.poll.username": req.session.passport.user}).sort("-polls.poll.created").exec(function(err, docs){
         if(err) throw err;
         if(docs === null || docs.length === 0)
-            res.send(JSON.stringify(data));
+            res.end(JSON.stringify(data));
         else if(docs.length > 0){
             console.log("Returning data from database...");
-            res.send(JSON.stringify(docs[0].polls.poll.dataset));
+            res.end(JSON.stringify(docs[0].polls.poll.dataset));
         }
         res.end();
     });
@@ -78,7 +78,7 @@ exports.randomChart = (req, res) => {
           if(result === null)
             res.end(JSON.stringify(data));
           else
-            res.send(JSON.stringify(result.polls.poll.dataset));
+            res.end(JSON.stringify(result.polls.poll.dataset));
         });
     });
 };
