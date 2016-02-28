@@ -132,7 +132,8 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
 app.get("/polls/all", chartController.getCharts);
 app.get("/create", chartController.create);
 app.post("/create", chartController.submit);
-
+app.get("/vote", chartController.vote)
+app.post("/vote", chartController.postVote);
 /**
  * API controllers
  */

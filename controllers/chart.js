@@ -3,6 +3,7 @@
  */
  
 var Poll = require("../models/Poll.js");
+var poll = new Poll();
 var randomColour = require("randomcolor");
 
 exports.getCharts = (req, res) => {
@@ -29,9 +30,7 @@ exports.create = (req, res) => {
  */
 
 exports.submit = (req, res) => {
-    var poll = new Poll();
-    
-    poll.polls.poll = {
+        poll.polls.poll = {
             username        : req.session.passport.user,
             created         : Date.now(),
             title           : req.body.title,
@@ -62,6 +61,16 @@ exports.submit = (req, res) => {
  * 
  */
  
+ exports.vote = (req, res) => {
+    res.render("vote", {
+       title: "Poll & Votes" 
+    });
+ }
+ 
+ exports.postVote = (req, res) =>{
+     
+ }
+ 
  /* // DELETE EXISTING POLL
  * 1) Authenticate user - only logged in user can delete poll //  must be there their own poll
  * 2) If no authenticated, redirect to home/signup/login
@@ -87,3 +96,10 @@ exports.submit = (req, res) => {
  * 2) Update dataset on database
  * 3) 
  */
+ 
+ exports.addVote = (req, res) => {
+    /*poll.update((err) => {
+        if (err) throw err;
+        console.log("Successfully updated the document in the database");
+    });*/
+ }

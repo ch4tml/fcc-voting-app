@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    #main(ng-app="getVotes")
+        include ./chart.jade
+        #chartOptions(ng-controller="VoteOptionController")
+            form(action="/vote", method="POST")
+                input(type='hidden', name='_csrf', value=_csrf)
+                .options(ng-repeat="option in chartOptions")
+                    button.btn.btn-info(name="{{option}}") {{option}}
+    // Main div
+
+    script(type="text/javascript", src="../../javascripts/chartConfig.js")
+    script(type="text/javascript", src="../../javascripts/chartControl.js")
+    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js", type="text/javascript")
+    script(src="../../javascripts/getVotingOptions.js", type="text/javascript")
+        
