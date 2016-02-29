@@ -31,16 +31,18 @@ exports.create = (req, res) => {
  */
 
 exports.submit = (req, res) => {
+    console.log(req.body);
+    console.log(req.body["option"]);
         poll.polls.poll = {
             username        : req.session.passport.user,
             created         : Date.now(),
             title           : req.body.title,
             url             : randomString.generate(8),
-            labels          : [req.body.option1, req.body.option2, req.body.option3, req.body.option4],
+            labels          : req.body.option,
             dataset         : [{
                 fillColor   : randomColour(),
                 strokeColor : "rgba(220,220,220,0.8)",
-                data        : [1, 4, 2, 5]
+                data        : []
             }]
         };
     
