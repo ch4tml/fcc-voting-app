@@ -82,3 +82,21 @@ exports.randomChart = (req, res) => {
         });
     });
 };
+
+/*
+ * RETURNS POLL FOR PASSED IN URL STRING
+ */
+ 
+exports.getExistingPoll = (req, res) => {
+  res.render("vote");
+  Poll.findOne({url: req.params.path}, function(err, doc){
+    if(err) throw err;
+    if(doc === undefined || doc === null || doc.length === 0)
+      res.end(JSON.stringify(data));
+    else{
+      console.log("Returning poll from database...");
+      res.end(JSON.stringify(doc.polls.poll));
+    }
+    res.end();
+  });
+};

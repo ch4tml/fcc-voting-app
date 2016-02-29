@@ -7,6 +7,7 @@ var pollSchema = mongoose.Schema({
       poll: {
           username	: String,
           created   : Date,
+          url       : String,
           title     : String,
           labels    : Array,
           dataset   : Array

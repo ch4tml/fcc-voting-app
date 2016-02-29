@@ -176,7 +176,7 @@ input, textarea{
     width: 200px;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-
+    
     /* To harmonize the look & feel of text field border */
     border: 1px solid #999;
 }

@@ -12,6 +12,7 @@
             response.data.forEach((item) => {
                 var temp = {};
                 temp.title = item.polls.poll.title;
+                temp.url = item.polls.poll.url;
                 $scope.charts.push(temp);
             });
         }, function (err) {

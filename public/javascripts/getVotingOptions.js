@@ -4,8 +4,9 @@
         $scope.chartOptions = [];
         $http({
             method: "GET",
-            url: "/api/recent" //TODO - change this to poll searched for
+            url: "/api/poll/existing" //TODO - change this to poll searched for
         }).then(function (response) {
+            console.log(response);
 
             $scope.chartOptions = response.data.labels;
 

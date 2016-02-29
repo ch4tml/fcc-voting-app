@@ -3,7 +3,9 @@ extends layout
 block content
     div#main(ng-app="allCharts" ng-controller="ChartController")
         div.current-polls(ng-repeat="chart in charts")
-            h1  {{chart.title}}
+            a(href="https://fcc-voting-app-ch4tml.c9users.io/" + "{{chart.url}}" target="_blank")
+                div
+                    h1 {{chart.title}}
         // Chart repeater
     // Main div
     

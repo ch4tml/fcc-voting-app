@@ -134,13 +134,15 @@ app.get("/create", chartController.create);
 app.post("/create", chartController.submit);
 app.get("/vote", chartController.vote)
 app.post("/vote", chartController.postVote);
+// Allows user to enter short url path to redirect
+app.get("/:path", chartController.redirect);
 /**
  * API controllers
  */
 app.get("/api/all", apiController.getAll);
 app.get("/api/recent", apiController.getRecent);
 app.get("/api/random", apiController.randomChart);
- 
+
 /**
  * Error Handler.
  */
