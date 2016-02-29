@@ -31,20 +31,21 @@ exports.create = (req, res) => {
  */
 
 exports.submit = (req, res) => {
-    console.log(req.body);
-    console.log(req.body["option"]);
-        poll.polls.poll = {
-            username        : req.session.passport.user,
-            created         : Date.now(),
-            title           : req.body.title,
-            url             : randomString.generate(8),
-            labels          : req.body.option,
-            dataset         : [{
-                fillColor   : randomColour(),
-                strokeColor : "rgba(220,220,220,0.8)",
-                data        : []
-            }]
-        };
+    // Filters body options - if a user adds an input and doesn't use it, this is filtered
+    var labels = req.body.option.filter(item => item.length > 0);
+    
+    poll.polls.poll = {
+        username        : req.session.passport.user,
+        created         : Date.now(),
+        title           : req.body.title,
+        url             : randomString.generate(8),
+        labels          : labels,
+        dataset         : [{
+            fillColor   : randomColour(),
+            strokeColor : "rgba(220,220,220,0.8)",
+            data        : []
+        }]
+    };
     
     poll.save((err) => {
         if (err) throw err;
