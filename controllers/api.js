@@ -88,8 +88,7 @@ exports.randomChart = (req, res) => {
  */
  
 exports.getExistingPoll = (req, res) => {
-  res.render("vote");
-  Poll.findOne({url: req.params.path}, function(err, doc){
+  Poll.findOne({"polls.poll.url": req.params[0] || req.params.path}, function(err, doc){
     if(err) throw err;
     if(doc === undefined || doc === null || doc.length === 0)
       res.end(JSON.stringify(data));

@@ -33,6 +33,9 @@ exports.create = (req, res) => {
 exports.submit = (req, res) => {
     // Filters body options - if a user adds an input and doesn't use it, this is filtered
     var labels = req.body.option.filter(item => item.length > 0);
+    var data = [];
+    // For each non-empty option the value is set at 0
+    labels.forEach(item => data.push(0));
     
     poll.polls.poll = {
         username        : req.session.passport.user,
@@ -43,7 +46,7 @@ exports.submit = (req, res) => {
         dataset         : [{
             fillColor   : randomColour(),
             strokeColor : "rgba(220,220,220,0.8)",
-            data        : []
+            data        : data
         }]
     };
     
@@ -51,8 +54,6 @@ exports.submit = (req, res) => {
         if (err) throw err;
         console.log("Successfully stored in the database");
     });
-
-    //newChart.createNewChart(poll.dataset);
  
     res.redirect("/create");
 };

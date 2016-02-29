@@ -142,6 +142,8 @@ app.get("/:path", chartController.redirect);
 app.get("/api/all", apiController.getAll);
 app.get("/api/recent", apiController.getRecent);
 app.get("/api/random", apiController.randomChart);
+// Links with :path above
+app.get("/api/*", apiController.getExistingPoll);
 
 /**
  * Error Handler.
