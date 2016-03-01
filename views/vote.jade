@@ -3,12 +3,14 @@ extends layout
 block content
     #main(ng-app="getVotes" ng-controller="VoteOptionController")
         h1 {{title}}
+        p {{clickCount}}
         include ./chart.jade
         #chartOptions
-            form(action="/vote", method="POST")
+            //form(action="/vote", method="POST") // Removed when experimenting with two way data binding
+            form
                 input(type='hidden', name='_csrf', value=_csrf)
                 .options(ng-repeat="option in chartOptions")
-                    button.btn.btn-info(name="{{option}}") {{option}}
+                    button.btn.btn-info(name="{{option}}", ng-click="addVote({{option}})") {{option}}
     // Main div
 
     script(type="text/javascript", src="../../javascripts/chartConfig.js")

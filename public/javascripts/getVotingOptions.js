@@ -3,7 +3,7 @@
     app.controller("VoteOptionController", ["$scope", "$http", "$location", ($scope, $http, $location) => {
         $scope.chartOptions = [];
         $scope.title;
-        
+        $scope.clickCount = 0;
         // Data object required for Chart JS
         $scope.datasource = {
             labels: [],
@@ -21,7 +21,7 @@
             $scope.title = response.data.title;
             $scope.datasource.labels = response.data.labels;
             $scope.datasource.datasets.push(response.data.dataset["0"]);
-      
+            
             var ctx = document.getElementById("myChart").getContext("2d");
             var myBarChart;
             var opts = {
@@ -43,7 +43,20 @@
             throw err;
         });
         
-  
-                
+        // Experimenting with add vote
+        //$scope.addVote = () => $scope.datasource.datasets["0"].data[0]++;
+        $scope.addVote = (name) => {
+            if($scope.chartOptions.indexOf(name) < 0)
+                return;
+            else{
+                var x = $scope.chartOptions.indexOf(name);
+                console.log(x);
+                console.log($scope.datasource.datasets["0"].data[x]);
+                $scope.datasource.datasets["0"].data[x]++;
+                console.log($scope.datasource.datasets["0"].data[x]);
+            }
+        }
+        //$scope.addVote = () => $scope.clickCount++;
+
     }]);
 })();
