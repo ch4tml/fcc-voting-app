@@ -104,6 +104,10 @@ exports.submit = (req, res) => {
  */
  
  exports.addVote = (req, res) => {
+    /*poll.findByIdAndUpdate(req.params[0], { $set: { size: 'large' }}, function (err, poll) {
+        if (err) throw err;
+        res.send(poll);
+        });*/
     /*poll.update((err) => {
         if (err) throw err;
         console.log("Successfully updated the document in the database");
